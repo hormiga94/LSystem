@@ -1,0 +1,490 @@
+﻿<Window x:Class="LSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LSystem"
+        mc:Ignorable="d"
+        Title="L-System Generator" Height="570.332" Width="1182.18">
+    <Grid Name="myGrid">
+
+
+
+        <Canvas Name="myCanva" Height="497" Margin="10,10,579,239" Width="585" MouseWheel="Canvas_MouseWheel">
+
+            <Canvas.RenderTransform>
+                <MatrixTransform/>
+            </Canvas.RenderTransform>
+
+
+        </Canvas>
+
+
+
+
+        <!--PODSTAWOWE-->
+        <Label Content="Aksjomat:" HorizontalAlignment="Left" Margin="627,87,0,0" VerticalAlignment="Top" Width="85" Height="34" HorizontalContentAlignment="Right"/>
+        <Label Content="Kąt:" HorizontalAlignment="Left" Margin="627,140,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="0.449,4.786" Height="27" HorizontalContentAlignment="Right"/>
+        <Label Content="Długość kroku:" HorizontalAlignment="Left" Margin="614,193,0,0" VerticalAlignment="Top" Width="98" Height="28" HorizontalContentAlignment="Right"/>
+        <Label Content="Ilość powtórzeń:" HorizontalAlignment="Left" Margin="614,241,0,0" VerticalAlignment="Top" Width="98" Height="28" HorizontalContentAlignment="Right" RenderTransformOrigin="0.5,0.179"/>
+
+        <TextBox Name="lAksjomat" HorizontalAlignment="Left" Height="22" Margin="718,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+        <TextBox Name="lKat" HorizontalAlignment="Left" Height="22" Margin="718,140,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.312,0.364"/>
+        <TextBox Name="lKrok" HorizontalAlignment="Left" Height="22" Margin="718,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+        <TextBox Name="lPowtorki" HorizontalAlignment="Left" Height="22" Margin="718,242,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
+
+        <Label Content="Przykłady:" HorizontalAlignment="Left" Margin="614,289,0,0" VerticalAlignment="Top" Width="98" Height="28" HorizontalContentAlignment="Right" RenderTransformOrigin="0.5,0.179"/>
+        <ComboBox Name="comboPrzyklady" HorizontalAlignment="Left" Margin="718,294,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="PrzykladzikW">
+            <ComboBoxItem Content="Krzywa Hilberta"/>
+            <ComboBoxItem Content="Trójkąt Sierpińskiego"/>
+            <ComboBoxItem Content="Płatek śniegu Koch'a"/>
+            <ComboBoxItem Content="Krzywa Peano"/>
+            <ComboBoxItem Content="Smok Heighway'a"/>
+            <ComboBoxItem Content="Smok Levy'ego"/>
+            <ComboBoxItem Content="Pentadendryt"/>
+            <ComboBoxItem Content="Gałąź 1"/>
+            <ComboBoxItem Content="Gałąź 2"/>
+            <ComboBoxItem Content="Penrose Tiling" />
+            <ComboBoxItem Content="Kwadrat Sierpińskiego"/>
+            <ComboBoxItem Content="Koła"/>
+            <ComboBoxItem Content="Krzywa Gospera"/>
+            <ComboBoxItem Content="Kolorowa gałąź"/>
+        </ComboBox>
+
+        <ComboBox Name="comboNumerki" HorizontalAlignment="Left" Margin="984,51,0,0" VerticalAlignment="Top" Width="43">
+            <ComboBoxItem x:Name="iOne" Content="1"/>
+            <ComboBoxItem x:Name="iTwo" Content="2"/>
+            <ComboBoxItem x:Name="iThree" Content="3"/>
+            <ComboBoxItem x:Name="iFour" Content="4"/>
+            <ComboBoxItem x:Name="iFive" Content="5"/>
+            <ComboBoxItem x:Name="iSix" Content="6"/>
+        </ComboBox>
+
+        <!-- NUMER JEDEN -->
+        <TextBox Name="z1" HorizontalAlignment="Left" Height="22" Margin="901,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.217,-1.087"/>
+
+        <Label Content="→" HorizontalAlignment="Left" Margin="938,87,0,0" VerticalAlignment="Top" Width="26" Height="23" />
+
+        <TextBox Name="lRegula" HorizontalAlignment="Left" Height="22" Margin="969,87,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+
+
+        <!-- NUMER DWA -->
+        <TextBox Name="z2" HorizontalAlignment="Left" Height="22" Margin="901,140,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.579,3.36">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=iTwo, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iThree, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFour, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFive, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iSix, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+        <Label Content="→" HorizontalAlignment="Left" Margin="938,140,0,0" VerticalAlignment="Top" Width="26" Height="23">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=iTwo, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iThree, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFour, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFive, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iSix, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <TextBox Name="lRegula2" HorizontalAlignment="Left" Height="22" Margin="969,141,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="193">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=iTwo, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iThree, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFour, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFive, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iSix, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+        <!-- NUMER TRZY -->
+        <TextBox Name="z3" HorizontalAlignment="Left" Height="22" Margin="901,193,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.324,5.855">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=iThree, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFour, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFive, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iSix, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+        <Label Content="→" HorizontalAlignment="Left" Margin="938,193,0,0" VerticalAlignment="Top" Width="26" Height="23">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=iThree, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFour, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFive, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iSix, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <TextBox Name="lRegula3" HorizontalAlignment="Left" Height="22" Margin="969,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=iThree, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFour, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFive, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iSix, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+
+        <!--NUMER CZTERY-->
+        <TextBox Name="z4" HorizontalAlignment="Left" Height="22" Margin="901,241,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.579,3.36">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=iFour, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFive, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iSix, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+        <Label Content="→" HorizontalAlignment="Left" Margin="938,241,0,0" VerticalAlignment="Top" Width="26" Height="23">
+            <Label.Style>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=iFour, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFive, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iSix, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <TextBox Name="lRegula4" HorizontalAlignment="Left" Height="22" Margin="969,242,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="193">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=iFour, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iFive, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iSix, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+
+        <!--NUMER PIĘĆ-->
+        <TextBox Name="z5" HorizontalAlignment="Left" Height="22" Margin="901,294,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.324,5.855">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=iFive, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iSix, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+        <Label Content="→" HorizontalAlignment="Left" Margin="938,294,0,0" VerticalAlignment="Top" Width="26" Height="23">
+            <Label.Style>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=iFive, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iSix, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <TextBox Name="lRegula5" HorizontalAlignment="Left" Height="22" Margin="969,295,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=iFive, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=iSix, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+        <!--NUMER SZEŚĆ-->
+        <TextBox Name="z6" HorizontalAlignment="Left" Height="22" Margin="901,339,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.324,5.855">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=iSix, Path=IsSelected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+        <Label Content="→" HorizontalAlignment="Left" Margin="938,339,0,0" VerticalAlignment="Top" Width="26" Height="23">
+            <Label.Style>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iSix}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <TextBox Name="lRegula6" HorizontalAlignment="Left" Height="22" Margin="969,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iSix}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+
+        <!--BUTTONY-->
+        <Button Name="bRysuj" Content="Rysuj" HorizontalAlignment="Left" Margin="938,401,0,0" VerticalAlignment="Top" Width="159" Click="Button_Click"/>
+        <Button Name="bWyczysc" Content="Wyczyść" HorizontalAlignment="Left" Margin="938,426,0,0" VerticalAlignment="Top" Width="159" Click="ButtonW_Click"/>
+        <Label Content="Ilość reguł:" HorizontalAlignment="Left" Margin="901,47,0,0" VerticalAlignment="Top"/>
+
+
+        <!--PRAWDOPODOBIEŃSWA-->
+        <TextBox Name="p1" HorizontalAlignment="Left" Height="22" Margin="864,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.217,-1.087" Text="0"/>
+        <TextBox Name="p2" HorizontalAlignment="Left" Height="22" Margin="864,140,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.579,3.36" Text="0">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iTwo}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iThree}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iFour}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iFive}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iSix}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+
+
+        <TextBox Name="p3" HorizontalAlignment="Left" Height="22" Margin="864,193,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.324,5.855" Text="0">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iThree}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iFour}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iFive}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iSix}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox Name="p4" HorizontalAlignment="Left" Height="22" Margin="864,241,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.579,3.36" Text="0">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iFour}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iFive}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iSix}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox Name="p5" HorizontalAlignment="Left" Height="22" Margin="864,294,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.324,5.855" Text="0">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iFive}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iSix}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox Name="p6" HorizontalAlignment="Left" Height="22" Margin="864,339,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.324,5.855" Text="0">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, ElementName=iSix}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <Label Content="P(R)" HorizontalAlignment="Left" Margin="864,47,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0.462"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </Grid>
+</Window>

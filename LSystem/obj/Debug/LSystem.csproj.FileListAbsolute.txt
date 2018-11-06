@@ -1,0 +1,15 @@
+K:\PROJEKTY VS\LSystem\LSystem\bin\Debug\LSystem.exe.config
+K:\PROJEKTY VS\LSystem\LSystem\bin\Debug\LSystem.exe
+K:\PROJEKTY VS\LSystem\LSystem\bin\Debug\LSystem.pdb
+K:\PROJEKTY VS\LSystem\LSystem\obj\Debug\MainWindow.g.cs
+K:\PROJEKTY VS\LSystem\LSystem\obj\Debug\App.g.cs
+K:\PROJEKTY VS\LSystem\LSystem\obj\Debug\LSystem_MarkupCompile.cache
+K:\PROJEKTY VS\LSystem\LSystem\obj\Debug\LSystem_MarkupCompile.lref
+K:\PROJEKTY VS\LSystem\LSystem\obj\Debug\MainWindow.baml
+K:\PROJEKTY VS\LSystem\LSystem\obj\Debug\LSystem.g.resources
+K:\PROJEKTY VS\LSystem\LSystem\obj\Debug\LSystem.Properties.Resources.resources
+K:\PROJEKTY VS\LSystem\LSystem\obj\Debug\LSystem.csproj.GenerateResource.Cache
+K:\PROJEKTY VS\LSystem\LSystem\obj\Debug\LSystem.csproj.CoreCompileInputs.cache
+K:\PROJEKTY VS\LSystem\LSystem\obj\Debug\LSystem.exe
+K:\PROJEKTY VS\LSystem\LSystem\obj\Debug\LSystem.pdb
+K:\PROJEKTY VS\LSystem\LSystem\obj\Debug\LSystem.csprojResolveAssemblyReference.cache
